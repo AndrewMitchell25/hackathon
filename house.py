@@ -1,10 +1,32 @@
 #!/usr/bin/env python3
 from uszipcode import SearchEngine
+import pandas as pd
+import numpy as np
+
+class County:
+    def __init__(self, county):
+        self.county = county
+        self.solar_install_cost = 0
+        self.average_electric_bill = 0
+        self.average_number_solar_panels = 0
+        self.average_residential_electricity_price = 0
+        self.average_energy_produced_per_day = 0
+
+    def set_info(self):
+        df = pd.read_csv('solarinfo.csv')
+        for i in range(len(df)):
+            if df.loc[i, 'County'] == self.county:
+                self.solar_install_cost = df.loc[i, 'Solar Installation Cost (of 5kW System)']
+                self.average_electric_bill = df.loc[i, 'Average Electric Bill per County']
+                self.average_number_solar_panels = df.loc[i, 'Average Number of Solar Panels per Household']
+                self.average_residential_electricity_price = df.loc[i, 'Average Residential Electricity Price per County (kWh)']
+                self.average_energy_produced_per_day = df.loc[i, 'Average Energy Produced in each County Per Day']
+                break
 
 class House:
     def __init__(self, zipcode, surface_area, angle = 30):
         self.zipcode = str(zipcode)
-        self.county = ""
+        self.county = None
         self.state = ""
         self.surface_area = surface_area
         self.angle = angle
@@ -12,7 +34,11 @@ class House:
     def set_county(self):
         sr = SearchEngine(download_url="https://your-private-storage.sqlite")
         zipcode = sr.by_zipcode(self.zipcode)
-        self.county = zipcode.values()[5]
+        county = zipcode.values()[5][:-7]
+        self.county = County(county)
+        print(self.county)
+        self.county.set_info()
+        print(self.county.solar_install_cost)
 
     def set_state(self):
         sr = SearchEngine(download_url="https://your-private-storage.sqlite")
@@ -54,7 +80,6 @@ class SolarSystem:
 
 
 if __name__ == '__main__':
-    myhouse = House("89110", 10000, 30)
+    myhouse = House("46556", 10000, 30)
     myhouse.set_county()
     myhouse.set_state()
-    print(myhouse.county, myhouse.state)
