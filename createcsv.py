@@ -23,7 +23,7 @@ def csvcreate():
 
     db.to_csv("solarinfo.csv", index=False)
 
-csvcreate()
+
 
 
 
