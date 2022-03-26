@@ -8,6 +8,7 @@ views = Blueprint('views', __name__)
 @views.route('/')
 @login_required
 def home():
+
     return render_template("home.html", user=current_user)
 
 @views.route('/location', methods=['GET', 'POST'])
@@ -26,3 +27,4 @@ def location():
         return redirect(url_for('views.home'))
 
     return render_template("location.html", user=current_user)
+

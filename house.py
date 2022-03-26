@@ -49,7 +49,8 @@ class SolarSystem:
         self.sqm = solar_panel.length*solar_panel.width * self.num_panels
 
     def set_estimate(self):
-        if self.num_panels == 0
+        if self.num_panels == 0:
+            self.estimate = 0
 
 
 if __name__ == '__main__':
