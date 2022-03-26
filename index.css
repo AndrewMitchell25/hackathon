@@ -1,3 +1,9 @@
-li {
-    color: blue;
+h1 {
+    text-align: center;
+    background-color: #95B1B1;
 }
+
+#intro {
+    text-align: center;
+}
+
