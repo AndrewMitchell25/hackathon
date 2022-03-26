@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
-from createcsv import csvcreate
+from .createcsv import csvcreate
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -36,7 +36,7 @@ def create_app():
     return app
 
 #create csv file
-csvcreate()
+#csvcreate()
 
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
