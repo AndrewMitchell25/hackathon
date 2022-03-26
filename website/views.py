@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, flash, url_for
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, login_user
 from .models import User, Address
 from . import db
 
@@ -13,6 +13,8 @@ def home():
 @views.route('/location', methods=['GET', 'POST'])
 def location():
     if request.method == 'POST':
+        #num_rows_deleted = db.session.query(User).delete()
+        #db.session.commit()
         address = request.form.get('address')
         state = request.form.get('state')
         zip_code = request.form.get('zip_code')
