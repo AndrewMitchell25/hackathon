@@ -1,13 +1,6 @@
-#!/usr/bin/env python3
-from flask import Flask, render_template, request, redirect
+from website import create_app
 
-app = Flask(__name__)
-
-@app.route('/', methods=["GET","POST"])
-def index():
-    return render_template("index.html")
+app = create_app()
 
 if __name__ == '__main__':
-    print("hello world")
-
-
+    app.run(debug=True)
