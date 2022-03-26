@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=["GET","POST"])
 def index():
     return render_template("index.html")
 

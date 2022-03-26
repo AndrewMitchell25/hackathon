@@ -19,10 +19,11 @@ class House:
 
 
 class SolarPanels:
-    def __init__(self, type)
+    def __init__(self, type):
+        pass
 
 
 if __name__ == '__main__':
     myhouse = House("89110", 10000, 30)
     myhouse.set_county()
-    print(myhouse.county)i
+    print(myhouse.county)
