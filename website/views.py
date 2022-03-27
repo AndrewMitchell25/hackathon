@@ -23,7 +23,7 @@ def consultation():
     if(not address):
         return redirect(url_for('views.location'))
     price = OnlyFunctionYouNeed(address.zip_code, 15, address.meb, address.county, address.state)
-    return render_template("consultation.html", user=current_user)
+    return render_template("consultation.html", user=current_user, price=price)
 
 @views.route('/location', methods=['GET', 'POST'])
 def location():
