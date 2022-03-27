@@ -146,7 +146,12 @@ body {
     background-color: #ffffff50;
 }
 
+<<<<<<< HEAD
 .navbar {
+=======
+.navbar::before{
+    height: 10px;
+>>>>>>> refs/remotes/origin/main
     align-items: center;
 }
 
