@@ -120,9 +120,9 @@ def UpfrontCost(zipcode, num_panels):
     return f'{round(res,2)}'
 
 if __name__ == '__main__':
-    num_panels = 17
+    num_panels = 15
     monthly_bill = 150
-    zipcode = 46556
+    zipcode = 46001
     print(OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill))
     print(UpfrontCost(zipcode, num_panels))
 
