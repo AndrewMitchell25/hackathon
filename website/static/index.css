@@ -1,30 +1,41 @@
+.home {
+    background-color: #95B1B1;
+}
 h1 {
     text-align: center;
-    background-color: #95B1B1;
+    padding: 15px 0px 0px 0px;
 }
 
 #intro {
     text-align: center;
+    font-size: 1.3em;
+    padding: 10px;
 }
 
 img {
     border: 2px solid black;
     width: 50%;
-    margin: 0px auto;
+    margin: 3px auto;
     display: block;
 }
 
+#h2 {
+    text-align: center;
+    margin: 25px 20px 20px 25px;
+    color: black;
+}
 #h3 {
     text-align: center;
-    margin: 50px 50px 20px 50px;
-    color: #95B1B1;
-    font-family: "Papyrus", Fantasy;
+    margin: 25px 20px 20px 25px;
+    color: black;
+    
 }
 
 #homevalue {
     border: 2px solid #95B1B1;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.3em;
+    margin: 10px;
 }
 
 #consultation {
@@ -51,7 +62,39 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.signuppicture #signupinfo {
+.signuppicture2 #form2 { /* login */
+    background-color: white;
+    color: black;
+    width: 65vw;
+    height: 35vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 20px;
+}
+
+.signuppicture2 {
+    position: relative;
+    text-align: left;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    background-image: url("images/solarpanelpic3.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    background-attachment: fixed;
+}
+
+.signuppicture2 p {
+    color: black;
+    text-align: center;
+    font-size: 1.3em;
+    margin: 50px;
+
+}
+.signuppicture #signupinfo { /* sign up page */
     text-align: center;
     color: black;
     font-size: 1.2em;
@@ -81,10 +124,38 @@ body {
 .signuppicture #form {
     background-color: white;
     color: black;
-    width: 60vw;
+    width: 65vw;
+    height: 65vh;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px 20px;
+}
+
+.description { /* for about page */
+    padding: 10px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.about {
+    background-color: #95B1B1;
+}
+
+.about h1 {
+    padding: 15px 0px 0px 0px;
+}
+
+#navbar ul li a:hover {
+    background-color: #ffffff50;
+}
+
+.navbar {
+    align-items: center;
+}
+
+.nav-link {
+    padding-top: 1.3vh;
+    font-size: 1.2em;
 }

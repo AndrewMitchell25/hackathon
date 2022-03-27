@@ -1,27 +1,30 @@
 {% extends "base.html" %}
 {% block title%}Home{% endblock %}
 {% block content%}
-<h1 class="mt-3 mb-3">Sol Solutions</h1>
-<hr>
-<p id='intro'>
-    Hello! Welcome to our project. Our project will be examining the need for increased implementation of solar
-    panels. Installing solar panels on your home helps combat greenhouse gas emissions and reduces our need to use
-    fossil fuels. Installing solar panels is also cheaper for individual families. Estimated savings over 20 years
-    after solar purchase is $7,000 (Project Sunroof). Solar no Polar is a user-friendly consultation to estimate how
-    much switching to solar energy would save your household.
-</p>
-<img src="../static/images/solarpanelpic.png" alt="picture of home with solar panels">
-<div>
-    <h3 id='h3'>Solar Panel prices increase your home value!</h3>
-    <p id='homevalue'>On average, homeowners see an increase in value by about 4.1% or roughly $15,000 in their home
-        value. In some
-        areas where the median home cost is higher or solar is more valued, you can expect to see even more of an
-        increase in value. </p>
-</div>
-<div>
-    <form action="/location">
-        <button id="consultation">Click to get a consultation for another address!</button>
-    </form>
+<div class="home">
+    <h1>Project Horizon</h1>
+    <h5 align="center">By Sol Solutions</h5>
+    <hr>
+    <p id='intro'>
+        Hello! Welcome to our project. Our project will be examining the need for increased implementation of solar
+        panels. Installing solar panels on your home helps combat greenhouse gas emissions and reduces our need to use
+        fossil fuels. Installing solar panels is also cheaper for individual families. Estimated savings over 20 years
+        after solar purchase is $7,000 (Project Sunroof). Project Horizon is a user-friendly consultation to estimate how
+        much switching to solar energy would save your household.
+    </p>
+    <img src="../static/images/solarpanelpic.png" alt="picture of home with solar panels">
+    <div>
+        <h3 id='h3'>Solar Panel prices increase your home value!</h3>
+        <p id='homevalue'>On average, homeowners see an increase in value by about 4.1% or roughly $15,000 in their home
+            value. In some
+            areas where the median home cost is higher or solar is more valued, you can expect to see even more of an
+            increase in value. </p>
+    </div>
+    <div>
+        <form action="/location">
+            <button id="consultation">Click to get a consultation for your address!</button>
+        </form>
+    </div>
 </div>
 
 {% endblock %}
