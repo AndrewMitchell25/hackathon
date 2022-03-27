@@ -55,7 +55,39 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.signuppicture #signupinfo {
+.signuppicture2 #form2 { /* login */
+    background-color: white;
+    color: black;
+    width: 65vw;
+    height: 35vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 20px;
+}
+
+.signuppicture2 {
+    position: relative;
+    text-align: left;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    background-image: url("images/solarpanelpic3.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    background-attachment: fixed;
+}
+
+.signuppicture2 p {
+    color: black;
+    text-align: center;
+    font-size: 1.3em;
+    margin: 50px;
+
+}
+.signuppicture #signupinfo { /* sign up page */
     text-align: center;
     color: black;
     font-size: 1.2em;
@@ -106,4 +138,19 @@ body {
 
 .about h1 {
     padding: 10px 0px 0px 0px;
+}
+
+#navbar ul li a:hover {
+    background-color: #ffffff50;
+}
+
+.navbar {
+    height: 8vh;
+    align-items: center;
+}
+
+.nav-link {
+    padding-top: 2.3vh;
+    height: 8vh;
+    font-size: 1.1em;
 }

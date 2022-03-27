@@ -13,39 +13,43 @@
 </head>
 
 <body class='home'>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <span class="ms-2 navbar-brand h1 text-white">
-            <b>Sol Solutions</b>
-        </span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" id="home" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="about" href="/about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="con" href="/consultation">Consultation</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
-                </li>
-                {% endif %}
-            </ul>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark p-0">
+        <div class="container-fluid">
+            <div>
+                <span class="ms-2 navbar-brand h1 text-white">
+                    <b>Sol Solutions</b>
+                </span>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" id="home" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="about" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="con" href="/consultation">Consultation</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="logout" href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="login" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </nav>
 
