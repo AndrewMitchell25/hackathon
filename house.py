@@ -37,7 +37,6 @@ class House:
         county = zipcode.values()[5][:-7]
         self.county = County(county)
         self.county.set_info()
-        print(self.county.solar_install_cost)
 
     def set_state(self):
         sr = SearchEngine(download_url="https://your-private-storage.sqlite")
@@ -98,12 +97,21 @@ def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill) -> float:
     myhouse.set_state()
     myhouse.set_power_cost(monthly_bill)
     ten_year_estimate = myhouse.power_estimate_ten_year()
-    print(ten_year_estimate)
     price = solar_system.estimate(17, myhouse.county.solar_install_cost)
 
-    
+    sub_daily_energy = 3.25 * solar_system.output_peak
 
-    return price
+    total_energy_day = myhouse.county.average_energy_produced_per_day * 1000 - sub_daily_energy
+    energy_cost_hour = (total_energy_day/24 * myhouse.county.average_residential_electricity_price/100)/(myhouse.county.average_energy_produced_per_day*1000/24)
+    energy_cost_day = energy_cost_hour * 24
+    energy_cost_month = energy_cost_day * 31
+    ten_year_new = energy_cost_month * 12 * 10
+    if ten_year_new < 0:
+        ten_year_new = 0
+
+    price = ten_year_new + price - ten_year_estimate
+
+    return f'{round(-price,2)}'
 
 
 if __name__ == '__main__':
