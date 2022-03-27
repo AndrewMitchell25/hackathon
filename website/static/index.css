@@ -144,8 +144,8 @@ body {
     background-color: #ffffff50;
 }
 
-.navbar {
-    height: 8vh;
+.navbar::before{
+    height: 10px;
     align-items: center;
 }
 
