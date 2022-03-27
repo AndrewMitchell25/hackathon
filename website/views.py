@@ -39,6 +39,6 @@ def location():
         db.session.add(new_address)
         db.session.commit()
         flash('Address added!', category='success')
-        return redirect(url_for('views.home'))
+        return redirect(url_for('views.consultation'))
 
     return render_template("location.html", user=current_user)
