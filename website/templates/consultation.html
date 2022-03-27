@@ -13,9 +13,11 @@
     <h2 id="savings"><b>Congratulations, {{current_user.first_name}}! <br>Your estimated savings switching to solar panels would be...</b></h2>
     <h3 id="price"><b>${{price}}</b></h3>
     <br>
-    <h5 id="energy">Click <a href="https://www.energy.gov/eere/solar/homeowners-guide-going-solar">here</a> to learn more about going solar.</h5>
+    <h5 id="energy">Click <a target="blank" href="https://www.energy.gov/eere/solar/homeowners-guide-going-solar">here</a> to learn more about going solar.</h5>
     <br>
-    <button href="/location" id="consultation2">Click here to get another consultation</button>
+    <form action="/location">
+        <button id="consultation">Click here to get another consultation!</button>
+    </form>
 </div>
 
 {% endblock %}
