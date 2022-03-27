@@ -4,32 +4,33 @@
 
 <form method="POST">
     <h3 align="center" class="mt-2">Sign Up</h3>
-    <h6 align="center">Already have an acount? Click <a href="/login">here</a> to login.</h6>
+    <h6 align="center">Already have an account? Click <a href="/login">here</a> to login.</h6>
     <div class="signuppicture">
-        <div class="overlay"></div>
-        <div class="bottom-left">Bottom Left</div>
-        <div class="top-right">Top Right</div>
-        <div class="form-group ms-3 me-3">
-            <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+        <div id="form">
+            <div class="form-group ms-3 me-3">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group ms-3 me-3">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name">
+            </div>
+            <div class="form-group ms-3 me-3">
+                <label for="password1">Password</label>
+                <input type="password" class="form-control" id="password1" name="password1"
+                    placeholder="Enter password">
+            </div>
+            <div class="form-group ms-3 me-3">
+                <label for="password2">Confirm Password</label>
+                <input type="password" class="form-control" id="password2" name="password2"
+                    placeholder="Confirm password">
+            </div>
+            </br>
+            <button type="submit" class="btn btn-primary ms-3">Submit</button>
+            <br>
         </div>
-        <div class="form-group ms-3 me-3">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name">
-        </div>
-        <div class="form-group ms-3 me-3">
-            <label for="password1">Password</label>
-            <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password">
-        </div>
-        <div class="form-group ms-3 me-3">
-            <label for="password2">Confirm Password</label>
-            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password">
-        </div>
-        </br>
-        <button type="submit" class="btn btn-primary ms-3">Submit</button>
-        <br>
-        <p id="signupinfo" class="mt-2">
-            Welcome to <b>Polar, no. Solar!</b> We're excited you're here. Please sign up to receive your free
+        <p id="signupinfo" class="mt-4">
+            Welcome to <b>Sol Solutions!</b> We're excited you're here. Please sign up to receive your free
             consultation.
         </p>
     </div>
