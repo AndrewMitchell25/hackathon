@@ -20,7 +20,7 @@ def about():
 def consultation():
     if(not current_user.is_authenticated):
         return redirect(url_for('auth.sign_up'))
-    address = Address.query.get(int(current_user.id)).first()
+    address = Address.query.get(int(current_user.id))
     if(not address):
         return redirect(url_for('views.location'))
     price = OnlyFunctionYouNeed(address.zip_code, address.panels, address.meb, address.county, address.state)
@@ -29,7 +29,7 @@ def consultation():
 @views.route('/location', methods=['GET', 'POST'])
 def location():
     if request.method == 'POST':
-        old_address = Address.query.get(int(current_user.id)).first()
+        old_address = Address.query.get(int(current_user.id))
         if old_address:
             db.session.delete(old_address)
             db.session.commit()
