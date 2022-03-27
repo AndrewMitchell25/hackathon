@@ -8,6 +8,8 @@ h1 {
 
 #intro {
     text-align: center;
+    font-size: 1.3em;
+    padding: 10px;
 }
 
 img {
@@ -27,7 +29,7 @@ img {
 #homevalue {
     border: 2px solid #95B1B1;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.3em;
     margin: 10px;
 }
 
@@ -137,7 +139,7 @@ body {
 }
 
 .about h1 {
-    padding: 10px 0px 0px 0px;
+    padding: 15px 0px 0px 0px;
 }
 
 #navbar ul li a:hover {
@@ -145,12 +147,10 @@ body {
 }
 
 .navbar {
-    height: 8vh;
     align-items: center;
 }
 
 .nav-link {
-    padding-top: 2.3vh;
-    height: 8vh;
-    font-size: 1.1em;
+    padding-top: 1.3vh;
+    font-size: 1.2em;
 }
