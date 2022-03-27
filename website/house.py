@@ -41,7 +41,7 @@ class House:
         self.power_cost = 0
 
     def set_county(self, county):
-        sr = SearchEngine()
+        # sr = SearchEngine()
         # zipcode = sr.by_zipcode(self.zipcode)
         # county = zipcode.values()[5][:-7]
         county = county
