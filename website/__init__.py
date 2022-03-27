@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from flask_login import LoginManager
+from flask_login import LoginManager, logout_user, current_user
 from .createcsv import csvcreate
 
 db = SQLAlchemy()
@@ -32,6 +32,9 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
+
+    if(current_user):
+        logout_user()
 
     return app
 
