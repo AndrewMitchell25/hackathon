@@ -2,6 +2,7 @@ from flask import Blueprint, redirect, render_template, request, flash, url_for
 from flask_login import login_required, current_user, login_user
 from .models import User, Address
 from . import db
+from website.house import OnlyFunctionYouNeed
 
 views = Blueprint('views', __name__)
 
@@ -18,6 +19,11 @@ def about():
 def consultation():
     if(not current_user.is_authenticated):
         return redirect(url_for('auth.sign_up'))
+    address = Address.query.get(int(current_user.id))
+    print(address)
+    if(not address):
+        return redirect(url_for('views.location'))
+    price = OnlyFunctionYouNeed("hello", 15, 125)
     return render_template("consultation.html", user=current_user)
 
 @views.route('/location', methods=['GET', 'POST'])
