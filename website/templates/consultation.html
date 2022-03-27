@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 {% block title%}Consultation{% endblock %}
 {% block content%}
-<h1>Sol Solutions</h1>
+<h1>Project: Horizon</h1>
 <hr>
 <div>
-    <h2>Your estimated savings over ten years if you switch to solar panels is...</h2>
-    <h3>{{price}}</h3>
+    <h2 id="savings"><b>The upfront cost would be...</b></h2>
+    <h3 id="price">${{upfront}}</h3>
+    <h2 id="savings"><b>Your old electric bill over ten years...</b></h2>
+    <h3 id="price">${{old}}</h3>
+    <h2 id="savings"><b>Your new electric bill over ten years...</b></h2>
+    <h3 id="price">${{new}}</h3>
+    <h2 id="savings"><b>Congratulations, {{current_user.first_name}}! <br>Your estimated savings switching to solar panels would be...</b></h2>
+    <h3 id="price"><b>${{price}}</b></h3>
+    <br>
+    <h5 id="energy">Click <a href="https://www.energy.gov/eere/solar/homeowners-guide-going-solar">here</a> to learn more about going solar.</h5>
+    <br>
+    <button href="/location" id="consultation2">Click here to get another consultation</button>
 </div>
 
 {% endblock %}
