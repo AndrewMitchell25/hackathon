@@ -111,6 +111,9 @@ def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill, county, state) -> flo
     energy_cost_month = energy_cost_day * 31
     ten_year_new = energy_cost_month * 12 * 10
 
+    if ten_year_new < 0:
+        ten_year_new = 0
+
     price = -(ten_year_new - ten_year_estimate) - solar_startup_cost
 
     return f'{round(price,2)}'
@@ -124,7 +127,7 @@ def UpfrontCost(zipcode, num_panels, county, state):
     return f'{round(res,2)}'
 
 if __name__ == '__main__':
-    num_panels = 15
+    num_panels = 17
     monthly_bill = 150
     zipcode = 46001
     county = "St. Joseph"
