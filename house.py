@@ -24,12 +24,11 @@ class County:
                 break
 
 class House:
-    def __init__(self, zipcode, surface_area, angle = 30):
+    def __init__(self, zipcode, num_panels):
         self.zipcode = str(zipcode)
+        self.num_panels = num_panels
         self.county = None
         self.state = ""
-        self.surface_area = surface_area
-        self.angle = angle
 
     def set_county(self):
         sr = SearchEngine(download_url="https://your-private-storage.sqlite")
@@ -58,26 +57,34 @@ class SolarPanel:
 
 
 class SolarSystem:
-    def __init__(self, output_peak = 5000, sqm = 17.2):
-        self.output_peak = output_peak
-        self.sqm = sqm
+    def __init__(self, num_panels):
+        self.output_peak = 0
+        self.sqm = 0
         self.solar_panel_type = None
-        self.num_panels = 0
-        self.estimate = 0
+        self.num_panels = num_panels
 
-    def set_solar_panels(self, length = 1.6, width = 1, power = 300):
+    def set_solar_panel_type(self, length = 1.6, width = 1, power = 300):
         solar_panel = SolarPanel(length, width, power)
-        self.num_panels = int(self.output_peak / solar_panel.power)
-        self.solar_panels = solar_panel
+        self.solar_panel_type = solar_panel
 
+    def set_output_peak:
+        if solar_panel_type is None:
+            self.set_solar_panel_type()
+        self.output_peak = self.num_panels * self.solar_panel_type.power
 
     def set_sqm(self, solar_panel):
         self.sqm = solar_panel.length*solar_panel.width * self.num_panels
 
-    def set_estimate(self):
-        if self.num_panels == 0:
-            self.estimate = 0
+    def estimate(self, num_panels, price_by_state):
+        if self.output_peak == 0:
+            self.set_output_peak
+        ratio = output_peak/5000
+        estimate = ratio * price_by_state
+        return estimate
 
+def OnlyFunctionYouNeed(zipcode, num_panels):
+    house = House(zipcode, num_panels):
+    
 
 if __name__ == '__main__':
     myhouse = House("46556", 10000, 30)
