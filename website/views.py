@@ -11,6 +11,7 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html", user=current_user)
 
+
 @views.route('/about')
 def about():
     return render_template("about.html", user=current_user)
@@ -38,9 +39,10 @@ def location():
         state = request.form.get('state')
         zip_code = request.form.get('zip_code')
         meb = request.form.get('meb')
+        panels = request.form.get('panels')
 
         new_address = Address(address=address, county=county, state=state, zip_code=int(
-            zip_code), meb=int(meb), user_id=current_user.id)
+            zip_code), meb=int(meb), panels=int(panels), user_id=current_user.id)
         db.session.add(new_address)
         db.session.commit()
         flash('Address added!', category='success')
