@@ -31,11 +31,12 @@ def consultation():
 
 @views.route('/location', methods=['GET', 'POST'])
 def location():
+    old_address = Address.query.get(int(current_user.id))
+    if old_address:
+        db.session.delete(old_address)
+        db.session.commit()
+
     if request.method == 'POST':
-        old_address = Address.query.get(int(current_user.id))
-        if old_address:
-            db.session.delete(old_address)
-            db.session.commit()
 
         address = request.form.get('address')
         county = request.form.get('county')
