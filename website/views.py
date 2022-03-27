@@ -20,21 +20,21 @@ def consultation():
     if(not current_user.is_authenticated):
         return redirect(url_for('auth.sign_up'))
     address = Address.query.get(int(current_user.id))
-    print(address)
     if(not address):
         return redirect(url_for('views.location'))
-    price = OnlyFunctionYouNeed("hello", 15, 125)
+    price = OnlyFunctionYouNeed(address.zip_code, 15, address.meb, address.county, address.state)
     return render_template("consultation.html", user=current_user)
 
 @views.route('/location', methods=['GET', 'POST'])
 def location():
     if request.method == 'POST':
         address = request.form.get('address')
+        county = request.form.get('county')
         state = request.form.get('state')
         zip_code = request.form.get('zip_code')
         meb = request.form.get('meb')
 
-        new_address = Address(address=address, state=state, zip_code=int(
+        new_address = Address(address=address, county=county, state=state, zip_code=int(
             zip_code), meb=int(meb), user_id=current_user.id)
         db.session.add(new_address)
         db.session.commit()
