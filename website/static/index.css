@@ -167,3 +167,16 @@ body {
 #energy a {
     color: black;
 }
+
+#consultation2 {
+    display: block;
+    width: 25%;
+    margin: 0px auto;
+    transition: all .5s;
+    padding: 10px;
+}
+#consultation2:hover {
+    background-color: #95b1b1;
+    cursor: pointer;
+    color: white;
+}
