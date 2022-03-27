@@ -101,32 +101,20 @@ class SolarSystem:
 
 
 def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill, county, state) -> float:
-    myhouse = House(zipcode, num_panels)
-    solar_system = SolarSystem(num_panels)
-    solar_system.set_output_peak()
-    myhouse.set_county(county)
-    myhouse.set_state(state)
-    myhouse.set_power_cost(monthly_bill)
-    ten_year_estimate = myhouse.power_estimate_ten_year()
-    solar_startup_cost = solar_system.estimate(
-        num_panels, myhouse.county.solar_install_cost)
+    string = TenYearNew(zipcode, num_panels, monthly_bill, county, state)
+    string = string.split(',')
+    ten_year_new = float("".join(string))
 
-    sub_daily_energy = 3.25 * solar_system.output_peak
+    string = TenYearPrev(monthly_bill)
+    string = string.split(',')
+    ten_year_prev = float("".join(string))
 
-    total_energy_day = myhouse.county.average_energy_produced_per_day * \
-        1000 - sub_daily_energy
-    energy_cost_hour = (total_energy_day/24 * myhouse.county.average_residential_electricity_price /
-                        100)/(myhouse.county.average_energy_produced_per_day*1000/24)
-    energy_cost_day = energy_cost_hour * 24
-    energy_cost_month = energy_cost_day * 31
-    ten_year_new = energy_cost_month * 12 * 10
+    string = UpfrontCost(zipcode, num_panels, county, state)
+    string = string.split(',')
+    up_front_cost = float("".join(string))
 
-    if ten_year_new < 0:
-        ten_year_new = 0
-
-    price = -(ten_year_new - ten_year_estimate) - solar_startup_cost
-
-    return f'{round(price,2)}'
+    new_price = -(ten_year_new - ten_year_prev) - up_front_cost
+    return f'{round(new_price,2):,.2f}'
 
 
 def UpfrontCost(zipcode, num_panels, county, state):
@@ -135,35 +123,29 @@ def UpfrontCost(zipcode, num_panels, county, state):
     myhouse.set_county(county)
     myhouse.set_state(state)
     res = solar_system.estimate(num_panels, myhouse.county.solar_install_cost)
-    return f'{round(res,2)}'
+    return f'{round(res,2):,.2f}'
 
 def TenYearPrev(monthly_bill):
-    return f'{round(monthly_bill * 12 * 10)}'
+    return f'{round(monthly_bill * 12 * 10):,.2f}'
 
 def TenYearNew(zipcode, num_panels, monthly_bill, county, state):
     myhouse = House(zipcode, num_panels)
     solar_system = SolarSystem(num_panels)
     solar_system.set_output_peak()
     myhouse.set_county(county)
-    myhouse.set_state(state)
-    myhouse.set_power_cost(monthly_bill)
-    ten_year_estimate = myhouse.power_estimate_ten_year()
-    solar_startup_cost = solar_system.estimate(
-        num_panels, myhouse.county.solar_install_cost)
 
     sub_daily_energy = 3.25 * solar_system.output_peak
 
-    total_energy_day = myhouse.county.average_energy_produced_per_day * \
-        1000 - sub_daily_energy
-    energy_cost_hour = (total_energy_day/24 * myhouse.county.average_residential_electricity_price /
-                        100)/(myhouse.county.average_energy_produced_per_day*1000/24)
+    total_energy_day = myhouse.county.average_energy_produced_per_day * 1000 - sub_daily_energy
+    energy_cost_hour = (total_energy_day/24 * myhouse.county.average_residential_electricity_price / 100)/(myhouse.county.average_energy_produced_per_day*1000/24)
     energy_cost_day = energy_cost_hour * 24
     energy_cost_month = energy_cost_day * 31
     ten_year_new = energy_cost_month * 12 * 10
 
     if ten_year_new < 0:
         ten_year_new = 0
-    return f'{round(ten_year_new,2)}'
+
+    return f'{round(ten_year_new,2):,.2f}'
 
 if __name__ == '__main__':
     num_panels = 17
