@@ -45,9 +45,4 @@ h5 {
 
 #switching {
     text-align: center;
-    transition: 1s
-}
-
-#switching:hover {
-    color: #95b1b1;
 }

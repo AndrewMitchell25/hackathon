@@ -16,8 +16,6 @@ def home():
 @views.route('/location', methods=['GET', 'POST'])
 def location():
     if request.method == 'POST':
-        #num_rows_deleted = db.session.query(User).delete()
-        # db.session.commit()
         address = request.form.get('address')
         state = request.form.get('state')
         zip_code = request.form.get('zip_code')
