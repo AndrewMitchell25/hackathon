@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, request, flash, url_for
 from flask_login import login_required, current_user, login_user
 from .models import User, Address
 from . import db
-from website.house import OnlyFunctionYouNeed
+from website.house import OnlyFunctionYouNeed, TenYearNew, TenYearPrev, UpfrontCost
 
 views = Blueprint('views', __name__)
 
@@ -24,7 +24,10 @@ def consultation():
     if(not address):
         return redirect(url_for('views.location'))
     price = OnlyFunctionYouNeed(address.zip_code, address.panels, address.meb, address.county, address.state)
-    return render_template("consultation.html", user=current_user, price=price)
+    upfront = UpfrontCost(address.zip_code, address.panels, address.county, address.state)
+    new = TenYearNew(address.zip_code, address.panels, address.meb, address.county, address.state)
+    old = TenYearPrev(address.meb)
+    return render_template("consultation.html", user=current_user, price=price, upfront=upfront, old=old, new=new)
 
 @views.route('/location', methods=['GET', 'POST'])
 def location():

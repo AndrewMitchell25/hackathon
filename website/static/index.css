@@ -19,10 +19,14 @@ img {
     display: block;
 }
 
-#h2 {
+#savings {
     text-align: center;
     margin: 25px 20px 20px 25px;
-    color: black;
+}
+
+#price {
+    text-align: center;
+
 }
 #h3 {
     text-align: center;
@@ -158,4 +162,8 @@ body {
 .nav-link {
     padding-top: 1.3vh;
     font-size: 1.2em;
+}
+
+#energy a {
+    color: black;
 }

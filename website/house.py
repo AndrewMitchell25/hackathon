@@ -16,7 +16,7 @@ class County:
         self.average_energy_produced_per_day = 0
 
     def set_info(self):
-        df = pd.read_csv("solarinfo.csv")
+        df = pd.read_csv("website/solarinfo.csv")
         for i in range(len(df)):
             if df.loc[i, 'County'] == self.county:
                 self.solar_install_cost = df.loc[i,
