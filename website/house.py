@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from uszipcode import SearchEngine
+import requests
+import json
 import pandas as pd
 import numpy as np
 
@@ -13,7 +15,7 @@ class County:
         self.average_energy_produced_per_day = 0
 
     def set_info(self):
-        df = pd.read_csv('solarinfo.csv')
+        df = pd.read_csv('website/solarinfo.csv')
         for i in range(len(df)):
             if df.loc[i, 'County'] == self.county:
                 self.solar_install_cost = df.loc[i, 'Solar Installation Cost (of 5kW System)']
@@ -31,17 +33,19 @@ class House:
         self.state = ""
         self.power_cost = 0
 
-    def set_county(self):
-        sr = SearchEngine(download_url="https://your-private-storage.sqlite")
-        zipcode = sr.by_zipcode(self.zipcode)
-        county = zipcode.values()[5][:-7]
+    def set_county(self, county):
+        sr = SearchEngine()
+        # zipcode = sr.by_zipcode(self.zipcode)
+        # county = zipcode.values()[5][:-7]
+        county = county
         self.county = County(county)
         self.county.set_info()
 
-    def set_state(self):
-        sr = SearchEngine(download_url="https://your-private-storage.sqlite")
-        zipcode = sr.by_zipcode(self.zipcode)
-        self.state = zipcode.values()[6]
+    def set_state(self, state):
+        # sr = SearchEngine()
+        # zipcode = sr.by_zipcode(self.zipcode)
+        # self.state = zipcode.values()[6]
+        self.state = state
 
     def set_power_cost(self, cost):
         self.power_cost = cost
@@ -89,12 +93,12 @@ class SolarSystem:
             house.set_county()
 
 
-def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill) -> float:
+def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill, county, state) -> float:
     myhouse = House(zipcode, num_panels)
     solar_system = SolarSystem(num_panels)
     solar_system.set_output_peak()
-    myhouse.set_county()
-    myhouse.set_state()
+    myhouse.set_county(county)
+    myhouse.set_state(state)
     myhouse.set_power_cost(monthly_bill)
     ten_year_estimate = myhouse.power_estimate_ten_year()
     solar_startup_cost = solar_system.estimate(num_panels, myhouse.county.solar_install_cost)
@@ -111,18 +115,19 @@ def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill) -> float:
 
     return f'{round(price,2)}'
 
-def UpfrontCost(zipcode, num_panels):
+def UpfrontCost(zipcode, num_panels, county, state):
     myhouse = House("46556", num_panels)
     solar_system = SolarSystem(num_panels)
-    myhouse.set_county()
-    myhouse.set_state()
+    myhouse.set_county(county)
+    myhouse.set_state(state)
     res = solar_system.estimate(num_panels, myhouse.county.solar_install_cost)
     return f'{round(res,2)}'
 
 if __name__ == '__main__':
-    num_panels = 17
+    num_panels = 15
     monthly_bill = 150
-    zipcode = 46556
-    print(OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill))
-    print(UpfrontCost(zipcode, num_panels))
-
+    zipcode = 46001
+    county = "St. Joseph"
+    state = "Indiana"
+    print(OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill, county, state))
+    print(UpfrontCost(zipcode, num_panels, county, state))
