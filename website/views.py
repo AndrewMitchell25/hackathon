@@ -16,22 +16,24 @@ def home():
 def about():
     return render_template("about.html", user=current_user)
 
-
 @views.route('/consultation')
 def consultation():
     if(not current_user.is_authenticated):
         return redirect(url_for('auth.sign_up'))
-    address = Address.query.get(int(current_user.id))
+    address = Address.query.get(int(current_user.id)).first()
     if(not address):
         return redirect(url_for('views.location'))
-    price = OnlyFunctionYouNeed(
-        address.zip_code, 15, address.meb, address.county, address.state)
+    price = OnlyFunctionYouNeed(address.zip_code, address.panels, address.meb, address.county, address.state)
     return render_template("consultation.html", user=current_user, price=price)
-
 
 @views.route('/location', methods=['GET', 'POST'])
 def location():
     if request.method == 'POST':
+        old_address = Address.query.get(int(current_user.id)).first()
+        if old_address:
+            db.session.delete(old_address)
+            db.session.commit()
+
         address = request.form.get('address')
         county = request.form.get('county')
         state = request.form.get('state')
