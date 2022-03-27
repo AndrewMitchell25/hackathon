@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from uszipcode import SearchEngine
+import requests
+import json
 import pandas as pd
 import numpy as np
 
@@ -32,14 +34,14 @@ class House:
         self.power_cost = 0
 
     def set_county(self):
-        sr = SearchEngine(download_url="https://your-private-storage.sqlite")
+        sr = SearchEngine()
         zipcode = sr.by_zipcode(self.zipcode)
         county = zipcode.values()[5][:-7]
         self.county = County(county)
         self.county.set_info()
 
     def set_state(self):
-        sr = SearchEngine(download_url="https://your-private-storage.sqlite")
+        sr = SearchEngine()
         zipcode = sr.by_zipcode(self.zipcode)
         self.state = zipcode.values()[6]
 
