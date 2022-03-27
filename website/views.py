@@ -14,6 +14,11 @@ def home():
 def about():
     return render_template("about.html", user=current_user)
 
+@views.route('/consultation')
+def consultation():
+    if(not current_user.is_authenticated):
+        return redirect(url_for('auth.sign_up'))
+    return render_template("consultation.html", user=current_user)
 
 @views.route('/location', methods=['GET', 'POST'])
 def location():
