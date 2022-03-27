@@ -90,14 +90,14 @@ class SolarSystem:
 
 
 def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill) -> float:
-    myhouse = House("46556", num_panels)
+    myhouse = House(zipcode, num_panels)
     solar_system = SolarSystem(num_panels)
     solar_system.set_output_peak()
     myhouse.set_county()
     myhouse.set_state()
     myhouse.set_power_cost(monthly_bill)
     ten_year_estimate = myhouse.power_estimate_ten_year()
-    price = solar_system.estimate(num_panels, myhouse.county.solar_install_cost)
+    solar_startup_cost = solar_system.estimate(num_panels, myhouse.county.solar_install_cost)
 
     sub_daily_energy = 3.25 * solar_system.output_peak
 
@@ -106,21 +106,23 @@ def OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill) -> float:
     energy_cost_day = energy_cost_hour * 24
     energy_cost_month = energy_cost_day * 31
     ten_year_new = energy_cost_month * 12 * 10
-    if ten_year_new < 0:
-        ten_year_new = 0
 
-    price = ten_year_new + price - ten_year_estimate
+    price = -(ten_year_new - ten_year_estimate) - solar_startup_cost
 
-    return f'{round(-price,2)}'
+    return f'{round(price,2)}'
 
 def UpfrontCost(zipcode, num_panels):
     myhouse = House("46556", num_panels)
     solar_system = SolarSystem(num_panels)
     myhouse.set_county()
     myhouse.set_state()
-    return solar_system.estimate(num_panels, myhouse.county.solar_install_cost)
+    res = solar_system.estimate(num_panels, myhouse.county.solar_install_cost)
+    return f'{round(res,2)}'
 
 if __name__ == '__main__':
-    print(OnlyFunctionYouNeed('46556', 17, 150))
-    print(UpfrontCost('46556', 17))
+    num_panels = 17
+    monthly_bill = 150
+    zipcode = 46556
+    print(OnlyFunctionYouNeed(zipcode, num_panels, monthly_bill))
+    print(UpfrontCost(zipcode, num_panels))
 
